@@ -15,7 +15,8 @@ const tables = [
   // Agrega aquí más tablas si lo deseas
 ];
 
-const serviceTemplate = (table) => `import { supabase } from '../lib/supabase';
+const serviceTemplate = (table) => `import { supabase } from './supabaseClient';
+
 
 export const getAll${capitalize(table)} = async () => {
   const { data, error } = await supabase

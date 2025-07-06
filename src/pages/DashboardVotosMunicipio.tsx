@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../supabaseClient';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createVotantes } from '../services/votantesService';
 import InputField from '../components/ui/InputField';
 import SelectField from '../components/ui/SelectField';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../supabaseClient';
 
 const VotanteForm = () => {
   const [form, setForm] = useState({
