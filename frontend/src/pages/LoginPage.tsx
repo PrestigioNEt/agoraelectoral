@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { login } from '../services/authService';
+import { useAuth } from '../contexts/AuthContext';
+import { login as loginService } from '../services/authService';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
     try {
-      await login({ email, password });
-      // La redirección se manejará en App.tsx o un componente superior
-      // que escuche los cambios de autenticación.
+      const { session } = await loginService({ email, password });
+      await login(session.access_token);
       window.location.href = '/'; // Redirección simple por ahora
     } catch (err: any) { 
       setError(err.message || 'Ocurrió un error al iniciar sesión.');

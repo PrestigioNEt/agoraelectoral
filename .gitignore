@@ -23,3 +23,15 @@ yarn-error.log*
 .nvm/
 agoraelectoralaico/
 .cursor-server/
+
+# Docker
+/docker-compose.yml
+
+# Gemini CLI temporary files
+.gemini/
+
+# Docker Buildx cache
+.docker/buildx/refs/
+
+# Logs
+.npm/_logs/

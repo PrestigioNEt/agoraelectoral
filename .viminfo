@@ -23,14 +23,24 @@
 # Registers:
 
 # File marks:
-'0  1  0  /tmp/gemini-edit-RSrZ2k/buffer.txt
-|4,48,1,0,1751769451,"/tmp/gemini-edit-RSrZ2k/buffer.txt"
+'0  1  0  /tmp/gemini-edit-ai88cE/buffer.txt
+|4,48,1,0,1751786179,"/tmp/gemini-edit-ai88cE/buffer.txt"
+'1  1  0  /tmp/gemini-edit-RSrZ2k/buffer.txt
+|4,49,1,0,1751769451,"/tmp/gemini-edit-RSrZ2k/buffer.txt"
 
 # Jumplist (newest first):
+-'  1  0  /tmp/gemini-edit-ai88cE/buffer.txt
+|4,39,1,0,1751786179,"/tmp/gemini-edit-ai88cE/buffer.txt"
+-'  1  0  /tmp/gemini-edit-RSrZ2k/buffer.txt
+|4,39,1,0,1751769451,"/tmp/gemini-edit-RSrZ2k/buffer.txt"
 -'  1  0  /tmp/gemini-edit-RSrZ2k/buffer.txt
 |4,39,1,0,1751769451,"/tmp/gemini-edit-RSrZ2k/buffer.txt"
 
 # History of marks within files (newest to oldest):
+
+> /tmp/gemini-edit-ai88cE/buffer.txt
+	*	1751786168	0
+	"	1	0
 
 > /tmp/gemini-edit-RSrZ2k/buffer.txt
 	*	1751769448	0

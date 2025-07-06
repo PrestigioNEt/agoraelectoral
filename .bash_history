@@ -246,3 +246,35 @@ gemini
 exit
 npm install -g @google/gemini-cli
 gemini
+gemini
+exit
+. "\home\agoraelectoral\.cursor-server\bin\031e7e0ff1e2eda9c1a0f5df67d44053b059c5d0\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+npm start
+. "\home\agoraelectoral\.cursor-server\bin\031e7e0ff1e2eda9c1a0f5df67d44053b059c5d0\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+npm run dev
+. "\home\agoraelectoral\.cursor-server\bin\031e7e0ff1e2eda9c1a0f5df67d44053b059c5d0\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+npm install recharts react-datepicker xlsx jspdf html2canvas
+mkdir -p services/mcp-service/src/routes services/mcp-service/src/llm services/mcp-service/src/vectorstore services/mcp-service/src/types services/mcp-service/src/utils
+npm init -y && npm install express cors dotenv
+cd services/mcp-service && npm init -y && npm install express cors dotenv && npm install --save-dev typescript ts-node @types/node @types/express
+cd services/mcp-service && npx tsc --init
+cd ~/services/mcp-service && npx tsc --init
+cd services/mcp-service && npm install typescript && npx tsc --init
+cd services/mcp-service && npx tsc --init
+npx tsc --init
+npm install typescript && npx tsc --init
+cd services/mcp-service && npm install --save-dev @types/express
+npm install --save-dev @types/express
+cd services/mcp-service && npm install axios redis && npm install --save-dev @types/redis
+npm install axios redis && npm install --save-dev @types/redis
+cd services/mcp-service && npm run build
+npm run build
+npm install --save-dev @types/cors
+npm run build
+npx ts-node test-redis.ts
+curl -X POST http://localhost:4100/analyze/sentiment -H "Content-Type: application/json" -H "x-api-key: changeme" -d '{"text":"Me siento optimista con este proyecto"}'
+sudo apt update
+sudo apt install -y python3-pip
+pip install git-filter-repo
+exit
+gemini
