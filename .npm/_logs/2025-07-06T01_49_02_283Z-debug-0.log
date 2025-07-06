@@ -1,0 +1,364 @@
+0 verbose cli /home/agoraelectoral/.nvm/versions/node/v20.19.3/bin/node /home/agoraelectoral/.nvm/versions/node/v20.19.3/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.19.3
+3 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/agoraelectoral/.npmrc
+5 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/etc/npmrc
+6 verbose title npm install @types/leaflet
+7 verbose argv "install" "--save-dev" "@types/leaflet"
+8 verbose logfile logs-max:10 dir:/home/agoraelectoral/.npm/_logs/2025-07-06T01_49_02_283Z-
+9 verbose logfile /home/agoraelectoral/.npm/_logs/2025-07-06T01_49_02_283Z-debug-0.log
+10 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest @types/leaflet@*
+15 silly packumentCache full:https://registry.npmjs.org/@types%2fleaflet cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/@types%2fleaflet 480ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/@types%2fleaflet set size:undefined disposed:false
+18 silly placeDep ROOT @types/leaflet@1.9.19 OK for: agoraelectoral@1.0.0 want: *
+19 silly fetch manifest @types/geojson@*
+20 silly packumentCache full:https://registry.npmjs.org/@types%2fgeojson cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/@types%2fgeojson 103ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/@types%2fgeojson set size:undefined disposed:false
+23 silly placeDep ROOT @types/geojson@7946.0.16 OK for: @types/leaflet@1.9.19 want: *
+24 silly reify moves {}
+25 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-wasm32-wasi
+26 silly reify mark deleted [ '/home/agoraelectoral/node_modules/@tailwindcss/oxide-wasm32-wasi' ]
+27 silly audit bulk request {
+27 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+27 silly audit   '@ampproject/remapping': [ '2.3.0' ],
+27 silly audit   '@babel/runtime': [ '7.27.6' ],
+27 silly audit   '@floating-ui/core': [ '1.7.2' ],
+27 silly audit   '@floating-ui/dom': [ '1.7.2' ],
+27 silly audit   '@floating-ui/react': [ '0.27.13' ],
+27 silly audit   '@floating-ui/react-dom': [ '2.1.4' ],
+27 silly audit   '@floating-ui/utils': [ '0.2.10' ],
+27 silly audit   '@isaacs/fs-minipass': [ '4.0.1' ],
+27 silly audit   '@jridgewell/gen-mapping': [ '0.3.12' ],
+27 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+27 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.4' ],
+27 silly audit   '@jridgewell/trace-mapping': [ '0.3.29' ],
+27 silly audit   '@react-leaflet/core': [ '3.0.0' ],
+27 silly audit   '@redis/bloom': [ '5.5.6' ],
+27 silly audit   '@redis/client': [ '5.5.6' ],
+27 silly audit   '@redis/json': [ '5.5.6' ],
+27 silly audit   '@redis/search': [ '5.5.6' ],
+27 silly audit   '@redis/time-series': [ '5.5.6' ],
+27 silly audit   '@reduxjs/toolkit': [ '2.8.2' ],
+27 silly audit   '@standard-schema/spec': [ '1.0.0' ],
+27 silly audit   '@standard-schema/utils': [ '0.3.0' ],
+27 silly audit   '@supabase/auth-js': [ '2.70.0' ],
+27 silly audit   '@supabase/functions-js': [ '2.4.5' ],
+27 silly audit   '@supabase/node-fetch': [ '2.6.15' ],
+27 silly audit   '@supabase/postgrest-js': [ '1.19.4' ],
+27 silly audit   '@supabase/realtime-js': [ '2.11.15' ],
+27 silly audit   '@supabase/storage-js': [ '2.7.1' ],
+27 silly audit   '@supabase/supabase-js': [ '2.50.3' ],
+27 silly audit   '@tailwindcss/node': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.1.11' ],
+27 silly audit   '@tailwindcss/postcss': [ '4.1.11' ],
+27 silly audit   '@types/d3-array': [ '3.2.1' ],
+27 silly audit   '@types/d3-color': [ '3.1.3' ],
+27 silly audit   '@types/d3-ease': [ '3.0.2' ],
+27 silly audit   '@types/d3-interpolate': [ '3.0.4' ],
+27 silly audit   '@types/d3-path': [ '3.1.1' ],
+27 silly audit   '@types/d3-scale': [ '4.0.9' ],
+27 silly audit   '@types/d3-shape': [ '3.1.7' ],
+27 silly audit   '@types/d3-time': [ '3.0.4' ],
+27 silly audit   '@types/d3-timer': [ '3.0.2' ],
+27 silly audit   '@types/node': [ '24.0.10' ],
+27 silly audit   '@types/phoenix': [ '1.6.6' ],
+27 silly audit   '@types/raf': [ '3.4.3' ],
+27 silly audit   '@types/trusted-types': [ '2.0.7' ],
+27 silly audit   '@types/use-sync-external-store': [ '0.0.6' ],
+27 silly audit   '@types/ws': [ '8.18.1' ],
+27 silly audit   accepts: [ '2.0.0' ],
+27 silly audit   'adler-32': [ '1.3.1' ],
+27 silly audit   atob: [ '2.1.2' ],
+27 silly audit   'base64-arraybuffer': [ '1.0.2' ],
+27 silly audit   'body-parser': [ '2.2.0' ],
+27 silly audit   btoa: [ '1.2.1' ],
+27 silly audit   bytes: [ '3.1.2' ],
+27 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+27 silly audit   'call-bound': [ '1.0.4' ],
+27 silly audit   canvg: [ '3.0.11' ],
+27 silly audit   cfb: [ '1.2.2' ],
+27 silly audit   chownr: [ '3.0.0' ],
+27 silly audit   clsx: [ '2.1.1' ],
+27 silly audit   'cluster-key-slot': [ '1.1.2' ],
+27 silly audit   codepage: [ '1.15.0' ],
+27 silly audit   'content-disposition': [ '1.0.0' ],
+27 silly audit   'content-type': [ '1.0.5' ],
+27 silly audit   cookie: [ '1.0.2', '0.7.2' ],
+27 silly audit   'cookie-signature': [ '1.2.2' ],
+27 silly audit   'core-js': [ '3.43.0' ],
+27 silly audit   cors: [ '2.8.5' ],
+27 silly audit   'crc-32': [ '1.2.2' ],
+27 silly audit   'css-line-break': [ '2.1.0' ],
+27 silly audit   'd3-array': [ '3.2.4' ],
+27 silly audit   'd3-color': [ '3.1.0' ],
+27 silly audit   'd3-ease': [ '3.0.1' ],
+27 silly audit   'd3-format': [ '3.1.0' ],
+27 silly audit   'd3-interpolate': [ '3.0.1' ],
+27 silly audit   'd3-path': [ '3.1.0' ],
+27 silly audit   'd3-scale': [ '4.0.2' ],
+27 silly audit   'd3-shape': [ '3.2.0' ],
+27 silly audit   'd3-time': [ '3.1.0' ],
+27 silly audit   'd3-time-format': [ '4.1.0' ],
+27 silly audit   'd3-timer': [ '3.0.1' ],
+27 silly audit   'date-fns': [ '4.1.0' ],
+27 silly audit   debug: [ '4.4.1' ],
+27 silly audit   'decimal.js-light': [ '2.5.1' ],
+27 silly audit   depd: [ '2.0.0' ],
+27 silly audit   'detect-libc': [ '2.0.4' ],
+27 silly audit   dompurify: [ '3.2.6' ],
+27 silly audit   dotenv: [ '17.0.1' ],
+27 silly audit   'dunder-proto': [ '1.0.1' ],
+27 silly audit   'ee-first': [ '1.1.1' ],
+27 silly audit   encodeurl: [ '2.0.0' ],
+27 silly audit   'enhanced-resolve': [ '5.18.2' ],
+27 silly audit   'es-define-property': [ '1.0.1' ],
+27 silly audit   'es-errors': [ '1.3.0' ],
+27 silly audit   'es-object-atoms': [ '1.1.1' ],
+27 silly audit   'es-toolkit': [ '1.39.6' ],
+27 silly audit   'escape-html': [ '1.0.3' ],
+27 silly audit   etag: [ '1.8.1' ],
+27 silly audit   eventemitter3: [ '5.0.1' ],
+27 silly audit   express: [ '5.1.0' ],
+27 silly audit   fflate: [ '0.8.2' ],
+27 silly audit   finalhandler: [ '2.1.0' ],
+27 silly audit   forwarded: [ '0.2.0' ],
+27 silly audit   frac: [ '1.1.2' ],
+27 silly audit   fresh: [ '2.0.0' ],
+27 silly audit   'function-bind': [ '1.1.2' ],
+27 silly audit   'get-intrinsic': [ '1.3.0' ],
+27 silly audit   'get-proto': [ '1.0.1' ],
+27 silly audit   gopd: [ '1.2.0' ],
+27 silly audit   'graceful-fs': [ '4.2.11' ],
+27 silly audit   'has-symbols': [ '1.1.0' ],
+27 silly audit   hasown: [ '2.0.2' ],
+27 silly audit   html2canvas: [ '1.4.1' ],
+27 silly audit   'http-errors': [ '2.0.0' ],
+27 silly audit   statuses: [ '2.0.1', '2.0.2' ],
+27 silly audit   'iconv-lite': [ '0.6.3' ],
+27 silly audit   immer: [ '10.1.1' ],
+27 silly audit   inherits: [ '2.0.4' ],
+27 silly audit   internmap: [ '2.0.3' ],
+27 silly audit   'ipaddr.js': [ '1.9.1' ],
+27 silly audit   'is-promise': [ '4.0.0' ],
+27 silly audit   isows: [ '1.0.7' ],
+27 silly audit   jiti: [ '2.4.2' ],
+27 silly audit   jspdf: [ '3.0.1' ],
+27 silly audit   leaflet: [ '1.9.4' ],
+27 silly audit   lightningcss: [ '1.30.1' ],
+27 silly audit   'lightningcss-darwin-arm64': [ '1.30.1' ],
+27 silly audit   'lightningcss-darwin-x64': [ '1.30.1' ],
+27 silly audit   'lightningcss-freebsd-x64': [ '1.30.1' ],
+27 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.30.1' ],
+27 silly audit   'lightningcss-linux-arm64-gnu': [ '1.30.1' ],
+27 silly audit   'lightningcss-linux-arm64-musl': [ '1.30.1' ],
+27 silly audit   'lightningcss-linux-x64-gnu': [ '1.30.1' ],
+27 silly audit   'lightningcss-linux-x64-musl': [ '1.30.1' ],
+27 silly audit   'lightningcss-win32-arm64-msvc': [ '1.30.1' ],
+27 silly audit   'lightningcss-win32-x64-msvc': [ '1.30.1' ],
+27 silly audit   'magic-string': [ '0.30.17' ],
+27 silly audit   'math-intrinsics': [ '1.1.0' ],
+27 silly audit   'media-typer': [ '1.1.0' ],
+27 silly audit   'merge-descriptors': [ '2.0.0' ],
+27 silly audit   'mime-db': [ '1.54.0' ],
+27 silly audit   'mime-types': [ '3.0.1' ],
+27 silly audit   minipass: [ '7.1.2' ],
+27 silly audit   minizlib: [ '3.0.2' ],
+27 silly audit   mkdirp: [ '3.0.1' ],
+27 silly audit   ms: [ '2.1.3' ],
+27 silly audit   nanoid: [ '3.3.11' ],
+27 silly audit   negotiator: [ '1.0.0' ],
+27 silly audit   'object-assign': [ '4.1.1' ],
+27 silly audit   'object-inspect': [ '1.13.4' ],
+27 silly audit   'on-finished': [ '2.4.1' ],
+27 silly audit   once: [ '1.4.0' ],
+27 silly audit   papaparse: [ '5.5.3' ],
+27 silly audit   parseurl: [ '1.3.3' ],
+27 silly audit   'path-to-regexp': [ '8.2.0' ],
+27 silly audit   'performance-now': [ '2.1.0' ],
+27 silly audit   picocolors: [ '1.1.1' ],
+27 silly audit   postcss: [ '8.5.6' ],
+27 silly audit   'proxy-addr': [ '2.0.7' ],
+27 silly audit   qs: [ '6.14.0' ],
+27 silly audit   raf: [ '3.4.1' ],
+27 silly audit   'range-parser': [ '1.2.1' ],
+27 silly audit   'raw-body': [ '3.0.0' ],
+27 silly audit   react: [ '19.1.0' ],
+27 silly audit   'react-datepicker': [ '8.4.0' ],
+27 silly audit   'react-dom': [ '19.1.0' ],
+27 silly audit   'react-is': [ '19.1.0' ],
+27 silly audit   'react-leaflet': [ '5.0.0' ],
+27 silly audit   'react-redux': [ '9.2.0' ],
+27 silly audit   'react-router': [ '7.6.3' ],
+27 silly audit   'react-router-dom': [ '7.6.3' ],
+27 silly audit   recharts: [ '3.0.2' ],
+27 silly audit   redis: [ '5.5.6' ],
+27 silly audit   redux: [ '5.0.1' ],
+27 silly audit   'redux-thunk': [ '3.1.0' ],
+27 silly audit   'regenerator-runtime': [ '0.13.11' ],
+27 silly audit   reselect: [ '5.1.1' ],
+27 silly audit   rgbcolor: [ '1.0.1' ],
+27 silly audit   router: [ '2.2.0' ],
+27 silly audit   'safe-buffer': [ '5.2.1' ],
+27 silly audit   'safer-buffer': [ '2.1.2' ],
+27 silly audit   scheduler: [ '0.26.0' ],
+27 silly audit   send: [ '1.2.0' ],
+27 silly audit   'serve-static': [ '2.2.0' ],
+27 silly audit   'set-cookie-parser': [ '2.7.1' ],
+27 silly audit   setprototypeof: [ '1.2.0' ],
+27 silly audit   'side-channel': [ '1.1.0' ],
+27 silly audit   'side-channel-list': [ '1.0.0' ],
+27 silly audit   'side-channel-map': [ '1.0.1' ],
+27 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+27 silly audit   'source-map-js': [ '1.2.1' ],
+27 silly audit   ssf: [ '0.11.2' ],
+27 silly audit   'stackblur-canvas': [ '2.7.0' ],
+27 silly audit   'svg-pathdata': [ '6.0.3' ],
+27 silly audit   tabbable: [ '6.2.0' ],
+27 silly audit   tailwindcss: [ '4.1.11' ],
+27 silly audit   tapable: [ '2.2.2' ],
+27 silly audit   tar: [ '7.4.3' ],
+27 silly audit   'text-segmentation': [ '1.0.3' ],
+27 silly audit   'tiny-invariant': [ '1.3.3' ],
+27 silly audit   toidentifier: [ '1.0.1' ],
+27 silly audit   tr46: [ '0.0.3' ],
+27 silly audit   'type-is': [ '2.0.1' ],
+27 silly audit   'undici-types': [ '7.8.0' ],
+27 silly audit   unpipe: [ '1.0.0' ],
+27 silly audit   'use-sync-external-store': [ '1.5.0' ],
+27 silly audit   utrie: [ '1.0.2' ],
+27 silly audit   vary: [ '1.1.2' ],
+27 silly audit   'victory-vendor': [ '37.3.6' ],
+27 silly audit   'webidl-conversions': [ '3.0.1' ],
+27 silly audit   'whatwg-url': [ '5.0.0' ],
+27 silly audit   wmf: [ '1.0.2' ],
+27 silly audit   word: [ '0.3.0' ],
+27 silly audit   wrappy: [ '1.0.2' ],
+27 silly audit   ws: [ '8.18.3' ],
+27 silly audit   xlsx: [ '0.18.5' ],
+27 silly audit   yallist: [ '5.0.0' ],
+27 silly audit   '@types/leaflet': [ '1.9.19' ],
+27 silly audit   '@types/geojson': [ '7946.0.16' ],
+27 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.1.11' ]
+27 silly audit }
+28 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-win32-x64-msvc
+29 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-win32-x64-msvc' ]
+30 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-win32-arm64-msvc
+31 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-win32-arm64-msvc' ]
+32 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-linux-arm64-musl
+33 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-linux-arm64-musl' ]
+34 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-linux-arm64-gnu
+35 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-linux-arm64-gnu' ]
+36 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-linux-arm-gnueabihf
+37 silly reify mark deleted [
+37 silly reify   '/home/agoraelectoral/node_modules/lightningcss-linux-arm-gnueabihf'
+37 silly reify ]
+38 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-freebsd-x64
+39 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-freebsd-x64' ]
+40 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-darwin-x64
+41 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-darwin-x64' ]
+42 verbose reify failed optional dependency /home/agoraelectoral/node_modules/lightningcss-darwin-arm64
+43 silly reify mark deleted [ '/home/agoraelectoral/node_modules/lightningcss-darwin-arm64' ]
+44 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-win32-x64-msvc
+45 silly reify mark deleted [
+45 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+45 silly reify ]
+46 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-win32-arm64-msvc
+47 silly reify mark deleted [
+47 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+47 silly reify ]
+48 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm64-musl
+49 silly reify mark deleted [
+49 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+49 silly reify ]
+50 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm64-gnu
+51 silly reify mark deleted [
+51 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm64-gnu'
+51 silly reify ]
+52 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf
+53 silly reify mark deleted [
+53 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+53 silly reify ]
+54 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-freebsd-x64
+55 silly reify mark deleted [ '/home/agoraelectoral/node_modules/@tailwindcss/oxide-freebsd-x64' ]
+56 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-darwin-x64
+57 silly reify mark deleted [ '/home/agoraelectoral/node_modules/@tailwindcss/oxide-darwin-x64' ]
+58 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-darwin-arm64
+59 silly reify mark deleted [ '/home/agoraelectoral/node_modules/@tailwindcss/oxide-darwin-arm64' ]
+60 verbose reify failed optional dependency /home/agoraelectoral/node_modules/@tailwindcss/oxide-android-arm64
+61 silly reify mark deleted [
+61 silly reify   '/home/agoraelectoral/node_modules/@tailwindcss/oxide-android-arm64'
+61 silly reify ]
+62 silly tarball no local data for @types/geojson@https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.16.tgz. Extracting by manifest.
+63 silly tarball no local data for @types/leaflet@https://registry.npmjs.org/@types/leaflet/-/leaflet-1.9.19.tgz. Extracting by manifest.
+64 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 180ms
+65 silly audit report {
+65 silly audit report   xlsx: [
+65 silly audit report     {
+65 silly audit report       id: 1094599,
+65 silly audit report       url: 'https://github.com/advisories/GHSA-4r6h-8v6p-xvw6',
+65 silly audit report       title: 'Prototype Pollution in sheetJS',
+65 silly audit report       severity: 'high',
+65 silly audit report       vulnerable_versions: '<0.19.3',
+65 silly audit report       cwe: [Array],
+65 silly audit report       cvss: [Object]
+65 silly audit report     },
+65 silly audit report     {
+65 silly audit report       id: 1096911,
+65 silly audit report       url: 'https://github.com/advisories/GHSA-5pgg-2g8v-p4x9',
+65 silly audit report       title: 'SheetJS Regular Expression Denial of Service (ReDoS)',
+65 silly audit report       severity: 'high',
+65 silly audit report       vulnerable_versions: '<0.20.2',
+65 silly audit report       cwe: [Array],
+65 silly audit report       cvss: [Object]
+65 silly audit report     }
+65 silly audit report   ]
+65 silly audit report }
+66 silly packumentCache corgi:https://registry.npmjs.org/xlsx cache-miss
+67 http fetch GET 200 https://registry.npmjs.org/xlsx 22ms (cache hit)
+68 silly packumentCache corgi:https://registry.npmjs.org/xlsx set size:134408 disposed:false
+69 http fetch GET 200 https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.16.tgz 352ms (cache miss)
+70 http fetch GET 200 https://registry.npmjs.org/@types/leaflet/-/leaflet-1.9.19.tgz 986ms (cache miss)
+71 silly ADD node_modules/@types/geojson
+72 silly ADD node_modules/@types/leaflet
+73 silly ADD
+74 silly ADD
+75 silly ADD
+76 silly ADD
+77 silly ADD
+78 silly ADD
+79 silly ADD
+80 silly ADD
+81 silly ADD
+82 silly ADD
+83 silly ADD
+84 silly ADD
+85 silly ADD
+86 silly ADD
+87 silly ADD
+88 silly ADD
+89 silly ADD
+90 silly ADD
+91 verbose cwd /home/agoraelectoral
+92 verbose os Linux 6.6.87.2-microsoft-standard-WSL2
+93 verbose node v20.19.3
+94 verbose npm  v10.8.2
+95 verbose exit 0
+96 info ok

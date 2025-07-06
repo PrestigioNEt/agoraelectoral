@@ -1,0 +1,20 @@
+0 verbose cli /home/agoraelectoral/.nvm/versions/node/v20.19.3/bin/node /home/agoraelectoral/.nvm/versions/node/v20.19.3/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.19.3
+3 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/agoraelectoral/services/mcp-service/.npmrc
+5 silly config load:file:/home/agoraelectoral/.npmrc
+6 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/etc/npmrc
+7 verbose title npm view @types/express description dist-tags.latest homepage version time
+8 verbose argv "view" "--json" "--" "@types/express" "description" "dist-tags.latest" "homepage" "version" "time"
+9 verbose logfile logs-max:10 dir:/home/agoraelectoral/.npm/_logs/2025-07-06T01_31_28_731Z-
+10 verbose logfile /home/agoraelectoral/.npm/_logs/2025-07-06T01_31_28_731Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
+12 silly logfile done cleaning log files
+13 http fetch GET 200 https://registry.npmjs.org/@types%2fexpress 630ms (cache revalidated)
+14 verbose cwd /home/agoraelectoral/services/mcp-service
+15 verbose os Linux 6.6.87.2-microsoft-standard-WSL2
+16 verbose node v20.19.3
+17 verbose npm  v10.8.2
+18 verbose exit 0
+19 info ok

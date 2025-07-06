@@ -1,0 +1,17 @@
+0 verbose cli /home/agoraelectoral/.nvm/versions/node/v20.19.3/bin/node /home/agoraelectoral/.nvm/versions/node/v20.19.3/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.19.3
+3 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/agoraelectoral/services/mcp-service/.npmrc
+5 silly config load:file:/home/agoraelectoral/.npmrc
+6 silly config load:file:/home/agoraelectoral/.nvm/versions/node/v20.19.3/etc/npmrc
+7 verbose title npm exec ts-node src/index.ts
+8 verbose argv "exec" "--" "ts-node" "src/index.ts"
+9 verbose logfile logs-max:10 dir:/home/agoraelectoral/.npm/_logs/2025-07-06T01_11_41_042Z-
+10 verbose logfile /home/agoraelectoral/.npm/_logs/2025-07-06T01_11_41_042Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+14 http fetch GET 200 https://registry.npmjs.org/ts-node 372ms (cache revalidated)
+15 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+16 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912

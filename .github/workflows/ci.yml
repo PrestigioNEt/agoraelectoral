@@ -1,0 +1,59 @@
+name: CI/CD - AgoraElectoral Frontend
+
+on:
+  push:
+    branches:
+      - main # Se activa con pushes a la rama principal
+  pull_request:
+    branches:
+      - main # También se activa en Pull Requests a main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Checkout del Repositorio
+        uses: actions/checkout@v3
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Usar una versión LTS de Node.js
+          cache: 'npm'
+
+      - name: 3. Instalar Dependencias
+        run: npm install
+
+      - name: 4. Ejecutar Pruebas
+        run: npm run test -- --run # El flag --run es para que Vitest no se quede en modo watch
+
+      - name: 5. Construir la Aplicación
+        run: npm run build
+        env:
+          # Necesitamos pasar las variables de entorno para que Vite las incluya en el build
+          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+
+      - name: 6. Subir Artefacto del Build
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './dist' # La carpeta de salida del build de Vite
+
+  deploy-to-github-pages:
+    needs: build-and-test # Este job depende de que el anterior sea exitoso
+    runs-on: ubuntu-latest
+    
+    # Permisos para que el job pueda desplegar en GitHub Pages
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
