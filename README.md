@@ -1,4 +1,4 @@
-# Agora Electoral PWA SaaS
+# Agora Electoral PWA SaaS 🧠
 
 ¡Bienvenido al repositorio de Agora Electoral! Este proyecto es una Aplicación Web Progresiva (PWA) diseñada como Software como Servicio (SaaS) para la gestión y análisis de procesos electorales. Su objetivo principal es proporcionar herramientas robustas para la administración de candidatos, votantes, votos y la visualización avanzada de resultados.
 
