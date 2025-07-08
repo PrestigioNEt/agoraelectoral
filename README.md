@@ -1,50 +1,23 @@
 # Agora Electoral PWA SaaS 🧠
 
-¡Bienvenido al repositorio de Agora Electoral! Este proyecto es una Aplicación Web Progresiva (PWA) diseñada como Software como Servicio (SaaS) para la gestión y análisis de procesos electorales. Su objetivo principal es proporcionar herramientas robustas para la administración de candidatos, votantes, votos y la visualización avanzada de resultados.
-
-## Características Principales
-
--   **Gestión de Usuarios y Roles:** Sistema de autenticación completo con roles (`admin`, `candidato`, `votante`) para controlar el acceso a diferentes funcionalidades.
--   **Administración de Candidatos y Votantes:** Interfaces dedicadas para el registro, edición y listado de candidatos y votantes.
--   **Registro de Votos:** Funcionalidad para el ingreso y seguimiento de votos.
--   **Visualización de Datos Avanzada:** Múltiples dashboards para analizar resultados electorales por región, municipio, cargo, y votantes.
--   **Notificaciones y Logs:** Gestión y visualización de notificaciones y registros del sistema.
--   **Integración de Mapas:** Visualización de datos geoespaciales con marcadores interactivos.
--   **Despliegue Continuo:** Configuración para despliegues automatizados en Netlify.
+¡Bienvenido al repositorio de Agora Electoral! Este proyecto es una Aplicación Web Progresiva (PWA) diseñada como Software como Servicio (SaaS) para la gestión y análisis de procesos electorales.
 
 ## Arquitectura
 
-El proyecto sigue una arquitectura de microservicios, dividiendo la aplicación en componentes frontend y backend desacoplados:
+El proyecto está estructurado como un **monorepo** utilizando **npm workspaces**, lo que permite gestionar de forma centralizada el `frontend` y los `services` de backend.
 
--   **Frontend:** Desarrollado con **React** y **TypeScript**, proporcionando una interfaz de usuario dinámica y reactiva. Utiliza **Vite** para un entorno de desarrollo rápido y un proceso de construcción optimizado.
--   **Backend:** Se basa en **Supabase** para la gestión de la base de datos (PostgreSQL), autenticación y APIs en tiempo real. Los servicios específicos del backend (como `auth-service`, `maps-service`, `crm-service`, etc.) están orquestados con **Docker Compose**.
-
-## Tecnologías Utilizadas
-
--   **Frontend:**
-    -   React
-    -   TypeScript
-    -   Vite
-    -   React Router DOM
-    -   React Leaflet (para mapas)
-    -   Recharts (para gráficos en dashboards)
-    -   Papaparse (para manejo de CSV)
-    -   html2canvas, jspdf (para exportación de contenido)
--   **Backend/Base de Datos:**
-    -   Supabase (PostgreSQL, Auth, Realtime)
-    -   Node.js (para microservicios)
-    -   Express.js (para APIs REST)
-    -   Redis (para caché y otras funcionalidades)
--   **Testing:**
-    -   Vitest
-    -   React Testing Library
--   **CI/CD:**
-    -   GitHub Actions
-    -   Netlify
+-   **Frontend:** Una aplicación React con TypeScript y Vite.
+-   **Backend:** Un conjunto de microservicios en Node.js (`auth-service`, `crm-service`, etc.), orquestados con Docker Compose.
+-   **Base de Datos:** Supabase (PostgreSQL, Auth, Realtime).
+-   **CI/CD:** GitHub Actions para la integración continua.
 
 ## Configuración y Ejecución Local
 
-Sigue estos pasos para tener el proyecto funcionando en tu máquina local.
+### Prerrequisitos
+
+-   Node.js (v18 o superior)
+-   npm (v8 o superior)
+-   Docker y Docker Compose
 
 ### 1. Clonar el Repositorio
 
@@ -55,70 +28,49 @@ cd agoraelectoral
 
 ### 2. Instalar Dependencias
 
+El proyecto utiliza npm workspaces. Instala todas las dependencias desde la raíz:
+
 ```bash
 npm install
 ```
 
 ### 3. Configurar Variables de Entorno
 
-Crea un archivo `.env` en la raíz del proyecto con tus credenciales de Supabase. Puedes usar el archivo `.env.example` como plantilla (si existe, o simplemente crea uno nuevo).
+El frontend necesita credenciales de Supabase para funcionar. Crea un archivo `.env` en la carpeta `frontend`.
 
 ```
-# .env
-REACT_APP_SUPABASE_URL=https://[tu-proyecto-id].supabase.co
-REACT_APP_SUPABASE_ANON_KEY=tu-anon-key-publica
+# frontend/.env
+VITE_SUPABASE_URL=https://[tu-proyecto-id].supabase.co
+VITE_SUPABASE_ANON_KEY=tu-anon-key-publica
 ```
 
-**Importante:** Asegúrate de que estas variables coincidan con las de tu proyecto Supabase. Para el desarrollo local, no es necesario que sean secretos de GitHub, pero para el despliegue en Netlify, sí lo son (ya configurado en GitHub Secrets).
+**Importante:** Para el despliegue, estas variables deben configurarse como secretos en el repositorio de GitHub (`VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`).
 
-### 4. Configuración de Supabase (Manual)
+### 4. Ejecutar el Entorno de Desarrollo
 
-Si aún no lo has hecho, configura tu base de datos Supabase con la tabla `profiles` y el trigger para roles, como se describe en la sección de análisis del proyecto.
-
-### 5. Ejecutar el Servidor de Desarrollo
+El proyecto utiliza Docker Compose para orquestar los servicios de backend y el frontend.
 
 ```bash
-npm run dev
+npm start
 ```
 
-Esto iniciará el servidor de desarrollo de Vite, y tu aplicación estará disponible en `http://localhost:5173` (o el puerto que Vite asigne).
+Esto levantará todos los servicios. El frontend estará disponible en `http://localhost:5173`.
 
-## Ejecutar Pruebas
+## Comandos Útiles
 
-Para ejecutar las pruebas unitarias y de componente:
+-   `npm start`: Levanta todos los servicios con Docker Compose.
+-   `npm run dev`: Alias para `npm start`.
+-   `npm run build`: Construye las imágenes de Docker para producción.
+-   `npm run down`: Detiene y elimina los contenedores.
+-   `npm run lint`: Ejecuta ESLint para analizar el código en busca de errores y problemas de estilo.
+-   `npm test`: Ejecuta las pruebas para todos los workspaces.
 
-```bash
-npm test
-# O para ver la interfaz de usuario de Vitest:
-npm run test:ui
-```
+## Despliegue
 
-## Despliegue en Netlify
+El frontend se despliega automáticamente en GitHub Pages en cada push a la rama `main`. La configuración se encuentra en `.github/workflows/ci.yml`.
 
-Este proyecto está configurado para despliegue continuo en Netlify. El archivo `netlify.toml` en la raíz del proyecto define los comandos de construcción y el directorio de publicación.
-
-Para desplegar:
-
-1.  Conecta tu repositorio de GitHub (`https://github.com/PrestigioNEt/agoraelectoral`) a Netlify.
-2.  Netlify detectará automáticamente el `netlify.toml`.
-3.  Asegúrate de haber configurado las variables de entorno `REACT_APP_SUPABASE_URL` y `REACT_APP_SUPABASE_ANON_KEY` como **Repository Secrets** en GitHub (Settings -> Secrets and variables -> Actions).
-4.  Inicia el despliegue desde el panel de Netlify.
-
-## Roadmap y Mejoras Futuras
-
-Aquí hay algunas áreas clave para futuras mejoras y expansiones:
-
--   **Mejoras de UX:** Implementar feedback visual (toasts, spinners de carga), y refinar el diseño general de la interfaz de usuario.
--   **Módulo CRM:** Desarrollar la interfaz de usuario y la lógica completa para el `crm-service` planificado.
--   **Actualizaciones en Tiempo Real:** Utilizar las capacidades de Realtime de Supabase para que los dashboards y listas se actualicen instantáneamente.
--   **Cobertura de Pruebas:** Ampliar la suite de pruebas para cubrir más funcionalidades y componentes críticos.
--   **Manejo de Errores:** Implementar `Error Boundaries` en React para una gestión de errores más robusta en la UI.
--   **Optimización de Rendimiento:** Analizar y optimizar el rendimiento de la aplicación, especialmente en los dashboards con grandes volúmenes de datos.
+Actualmente, no hay un flujo de despliegue automatizado para los servicios de backend.
 
 ## Contribuciones
 
-¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor, abre un issue para discutir los cambios propuestos o envía un Pull Request.
-
-## Licencia
-
-Este proyecto está bajo la licencia ISC. Consulta el archivo `LICENSE` para más detalles.
+Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los cambios propuestos o envía un Pull Request.

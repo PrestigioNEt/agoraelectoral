@@ -10,6 +10,15 @@
     "start": "docker compose up",
     "dev": "docker compose up",
     "build": "docker compose build",
-    "down": "docker compose down"
+    "down": "docker compose down",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "knip": "^5.61.3"
   }
 }

@@ -1,19 +1,25 @@
-# Base image
-FROM node:18-alpine
+# Etapa de dependencias
+FROM python:3.11-slim as deps
 
-# Create app directory
 WORKDIR /usr/src/app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm install
+RUN pip install poetry
 
-# Bundle app source
-COPY . .
+COPY pyproject.toml poetry.lock* ./
 
-# Build typescript
-RUN npm run build
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-# Expose port and start app
-EXPOSE 3001
-CMD [ "npm", "start" ]
+# Etapa de producción
+FROM python:3.11-slim as production
+
+WORKDIR /usr/src/app
+
+COPY --from=deps /usr/src/app/requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./app /usr/src/app/app
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

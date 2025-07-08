@@ -278,3 +278,46 @@ sudo apt install -y python3-pip
 pip install git-filter-repo
 exit
 gemini
+exit
+exit
+lsb_release 
+cat /etc/os-release  
+cd /home/agoraelectoral/frontend
+npm run dev
+gemini
+code .
+systemctl list-units --type=service --state=running
+sudo systemctl disable bluetooth.service
+sudo systemctl disable cups.service
+echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
+sudo apt clean && sudo apt autoremove
+sudo systemctl enable fstrim.timer
+docker buildx version
+node -v
+npm -v
+docker -v
+docker run --name my-redis -p 6379:6379 -d redis
+sudo curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/apt/$(lsb_release -cs)-pgadmin4 
+     pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+sudo apt update
+sudo nano /etc/apt/sources.list.d/pgadmin4.list
+sudo apt update
+sudo chown -R agoraelectoral:agoraelectoral /home/agoraelectoral/services/auth-service
+npm install express
+openssl rand -base64 32
+npm install
+cd /home/agoraelectoral/frontend
+npm run dev
+1 sudo chown -R agoraelectoral:agoraelectoral /home/agoraelectoral/frontend
+sudo chown -R agoraelectoral:agoraelectoral /home/agoraelectoral/frontend
+npm run dev
+cd /home/agoraelectoral/services/auth-service
+node src/index.js
+cd /home/agoraelectoral/services/auth-service
+node src/index.js
+cd /home/agoraelectoral/services/crm-service
+node src/index.js
+cd /home/agoraelectoral/services/crm-service
+node src/index.js
+exit

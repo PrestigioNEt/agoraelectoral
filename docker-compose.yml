@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  auth-service:
+    build: ./services/auth-service
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./services/auth-service/app:/usr/src/app/app
+
+  crm-service:
+    build: ./services/crm-service
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./services/crm-service/app:/usr/src/app/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
