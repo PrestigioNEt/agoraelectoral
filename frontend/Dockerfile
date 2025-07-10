@@ -1,11 +1,12 @@
 # Base image
-FROM node:18-alpine
+FROM node:20
 
 # Create app directory
 WORKDIR /usr/src/app
 
 # Install dependencies
 COPY package*.json ./
+RUN npm cache clean --force
 RUN npm install
 
 # Bundle app source

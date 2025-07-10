@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maps-service-deployment
+  labels:
+    app: maps-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maps-service
+  template:
+    metadata:
+      labels:
+        app: maps-service
+    spec:
+      containers:
+      - name: maps-service
+        image: gcr.io/YOUR_GCP_PROJECT_ID/maps-service:latest # REPLACE with your actual image path
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REDIS_HOST
+          value: "redis"

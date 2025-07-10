@@ -321,3 +321,204 @@ node src/index.js
 cd /home/agoraelectoral/services/crm-service
 node src/index.js
 exit
+sudo apt-get install google-cloud-sdk
+wsl.exe -l -v
+wsl.exe --set-version (distribution name) 2
+wsl.exe --set-version (Ubuntu-22.04) 2
+exit
+wsl.exe -l -v
+wsl.exe --set-version (Ubuntu-22.04) 2
+wsl.exe --set-version Ubuntu-22.04 2
+wsl.exe --set-default-version 2
+exit
+code .
+gemini
+systemctl restart docker
+systemctl status docker.service
+systemctl restart docker
+sudo systemctl status docker.service
+sudo systemctl restart docker.service
+sudo systemctl status docker.service
+groups $USER
+sudo systemctl status docker.service
+sudo systemctl status docker
+gemini
+code.
+coder
+code.
+ping db.ikqazmfovpzufdrslfnf.supabase.co
+ping -c 4 8.8.8.8
+nslookup google.com
+sudo ufw status
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 53
+sudo ufw allow in on docker0
+sudo ufw allow out on docker0
+sudo nano /etc/docker/daemon.json
+sudo systemctl restart docker
+docker network ls
+docker network inspect bridge
+docker run -it --name test-network alpine:latest
+curl -I https://www.google.com
+docker run --rm -it curlimages/curl:latest curl -I https://httpbin.org/ip
+sudo ufw status
+ping db.ikqazmfovpzufdrslfnf.supabase.co
+ping 8.8.8.8
+ping db.ikqazmfovpzufdrslfnf.supabase.co
+64 bytes from 8.8.8.8: icmp_seq=508 ttl=116 time=14.2 ms
+64 bytes from 8.8.8.8: icmp_seq=509 ttl=116 time=15.5 ms
+64 bytes from 8.8.8.8: icmp_seq=510 ttl=116 time=13.6 ms
+64 bytes from 8.8.8.8: icmp_seq=511 ttl=116 time=13.8 ms
+64 bytes from 8.8.8.8: icmp_seq=512 ttl=116 time=14.2 ms
+64 bytes from 8.8.8.8: icmp_seq=513 ttl=116 time=14.1 ms
+64 bytes from 8.8.8.8: icmp_seq=514 ttl=116 time=14.1 ms
+64 bytes from 8.8.8.8: icmp_seq=515 ttl=116 time=13.7 ms
+64 bytes from 8.8.8.8: icmp_seq=516 ttl=116 time=14.1 ms
+64 bytes from 8.8.8.8: icmp_seq=517 ttl=116 time=13.4 ms
+64 bytes from 8.8.8.8: icmp_seq=518 ttl=116 time=13.9 ms
+64 bytes from 8.8.8.8: icmp_seq=519 ttl=116 time=13.4 ms
+64 bytes from 8.8.8.8: icmp_seq=520 ttl=116 time=13.6 ms
+64 bytes from 8.8.8.8: icmp_seq=521 ttl=116 time=14.4 ms
+64 bytes from 8.8.8.8: icmp_seq=522 ttl=116 time=13.7 ms
+--- 8.8.8.8 ping statistics ---
+522 packets transmitted, 522 received, 0% packet loss, time 521628ms
+rtt min/avg/max/mdev = 11.089/13.940/19.222/0.901 ms
+nslookup db.ikqazmfovpzufdrslfnf.supabase.co
+dig A 
+docker-compose exec frontend sh
+docker run --dns=8.8.8.8 --dns=8.8.4.4 -it alpine:latest
+docker run hello-world
+docker ps successfull
+docker-compose exec auth-service bash
+docker-compose exec frontend sh
+ls -l node_modules/.bin/
+docker-compose exec frontend sh
+cd /home/agoraelectoral/frontend
+npm install
+sudo chown -R $(whoami) /home/agoraelectoral/frontend
+npm install
+npm run dev
+npm install
+npm run dev
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+npm install
+npm run dev
+cd /home/agoraelectoral
+docker-compose logs
+cd /home/agoraelectoral/frontend
+npm install
+npm run dev
+docker-compose logs auth-service
+npm run dev
+exit
+gemini
+code .
+sudo apt-get update
+sudo apt-get install -y docker-buildx
+sudo apt-get update && sudo apt-get install -y docker-buildx
+sudo apt-get purge docker.io containerd.io
+sudo apt-get autoremove -y
+sudo apt-get update && sudo apt-get install -y docker-buildx
+grep -r "pgadmin" /etc/apt/
+sudo sed -i 's/^/# /' /etc/apt/sources.list.d/pgadmin4.list
+sudo apt-get update && sudo apt-get install -y docker-buildx
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+env | grep -i proxy
+/etc/default/docker
+sudo cat /etc/default/docker
+sudo systemctl show docker --property Environment
+sudo ufw status
+sudo ufw disable
+docker compose up --build
+sudo systemctl restart docker
+sudo iptables -L -n -v
+docker network prune
+sudo systemctl restart docker
+ocker 
+docker compose up --build
+ping -c 4 google.com
+docker network ls
+docker network rm $(docker network ls -q)
+docker run --rm --network=host alpine ping -c 3 google.com
+sudo systemctl stop docker
+sudo iptables -t nat -F
+sudo iptables -t filter -F
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo rm -rf /var/lib/docker/network
+sudo systemctl start docker
+sudo systemctl status docker
+docker compose down
+sudo systemctl stop docker
+sudo iptables -t nat -F
+sudo iptables -t filter -F
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo rm -rf /var/lib/docker/network
+sudo systemctl start docker
+sudo systemctl status docker
+sudo nano /etc/docker/daemon.json
+sudo systemctl restart docker
+sudo systemctl status docker
+docker compose up --build
+cat /etc/environment | grep -i proxy
+grep -r "proxy" /etc/apt/apt.conf.d/
+gsettings get org.gnome.system.proxy mode
+gsettings get org.gnome.system.proxy.http host
+gsettings get org.gnome.system.proxy.https port
+docker run -d --name my_container --network my_custom_network my_image
+sudo apt-get remove --purge docker-ce docker-ce-cli containerd.io
+sudo rm -rf /var/lib/docker
+sudo rm -rf /etc/docker
+wsl --shutdown
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+docker --version
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+docker --version
+sudo systemctl start docker
+sudo systemctl enable docker
+# Añade estas líneas a tu archivo de perfil
+export DOCKER_HOST=tcp://localhost:2375
+export DOCKER_TLS_VERIFY=1
+export DOCKER_CERT_PATH=/home/tuusuario/.docker/machine/machines/default
+source ~/.bashrc  # o source ~/.zshrc si estás usando zsh
+exit
+gemini
+clear
+code.
+coder
+sudo snap install coder
+code .
+sudo systemctl start docker
+node --v
+node -v
+docker compose build mcp-service
+docker build -t
+exit
+cd agoraelectoral
+sudo cd agoraelectoral
+gemini
+gemini
+cd agoraelectoralaico
+ls -la
+npm run dev
+clear
+gemini
+exit

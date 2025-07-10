@@ -15,7 +15,7 @@ El proyecto está estructurado como un **monorepo** utilizando **npm workspaces*
 
 ### Prerrequisitos
 
--   Node.js (v18 o superior)
+-   Node.js (v20.19.0 o superior, especificado en `.nvmrc`)
 -   npm (v8 o superior)
 -   Docker y Docker Compose
 
@@ -44,7 +44,9 @@ VITE_SUPABASE_URL=https://[tu-proyecto-id].supabase.co
 VITE_SUPABASE_ANON_KEY=tu-anon-key-publica
 ```
 
-**Importante:** Para el despliegue, estas variables deben configurarse como secretos en el repositorio de GitHub (`VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`).
+Los servicios de backend también pueden requerir variables de entorno. Revisa los archivos `.env.example` dentro de cada carpeta de `services` para la configuración necesaria.
+
+**Importante:** Para el despliegue, estas variables deben configurarse como secretos en el repositorio de GitHub.
 
 ### 4. Ejecutar el Entorno de Desarrollo
 
@@ -62,14 +64,23 @@ Esto levantará todos los servicios. El frontend estará disponible en `http://l
 -   `npm run dev`: Alias para `npm start`.
 -   `npm run build`: Construye las imágenes de Docker para producción.
 -   `npm run down`: Detiene y elimina los contenedores.
--   `npm run lint`: Ejecuta ESLint para analizar el código en busca de errores y problemas de estilo.
--   `npm test`: Ejecuta las pruebas para todos los workspaces.
+-   `npm run lint`: Ejecuta los linters para todo el código (JavaScript/TypeScript y Python).
+-   `npm test`: Ejecuta todas las pruebas del proyecto (frontend y backend).
+
+### Scripts Personalizados
+
+-   `generateServices.js`: Este script genera automáticamente los archivos de servicio de Supabase para el frontend (`frontend/src/services/`). Se basa en una lista predefinida de tablas y crea funciones CRUD básicas para cada una. Útil para acelerar el desarrollo de la capa de acceso a datos del frontend.
+-   `limpiar_config_frontend.sh`: Un script de shell que ayuda a mantener la limpieza del proyecto eliminando archivos de configuración duplicados (`postcss.config.js`, `tailwind.config.js`, `.env`) fuera del directorio `frontend/client`. Asegura que solo exista una fuente de verdad para la configuración del frontend.
 
 ## Despliegue
 
-El frontend se despliega automáticamente en GitHub Pages en cada push a la rama `main`. La configuración se encuentra en `.github/workflows/ci.yml`.
+El despliegue está automatizado mediante GitHub Actions.
 
-Actualmente, no hay un flujo de despliegue automatizado para los servicios de backend.
+-   **Frontend:** Se despliega automáticamente en GitHub Pages en cada push a la rama `main`.
+    *Nota:* Para despliegues en entornos de Kubernetes, se utiliza el manifiesto `k8s/frontend-deployment.yaml`.
+-   **Backend:** Los servicios `auth-service` y `crm-service` se despliegan en Google Kubernetes Engine (GKE) en cada push a la rama `main`.
+
+La configuración completa se encuentra en `.github/workflows/ci.yml`.
 
 ## Contribuciones
 

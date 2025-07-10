@@ -1,8 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
+import { 
+  createClient } from '@supabase/supabase-js';
 
 // Obtener las variables de entorno de Supabase
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
 // Validar que las variables de entorno estén definidas
 if (!supabaseUrl || !supabaseAnonKey) {

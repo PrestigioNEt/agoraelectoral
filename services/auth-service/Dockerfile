@@ -7,16 +7,22 @@ RUN pip install poetry
 
 COPY pyproject.toml poetry.lock* ./
 
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
+# Forzar a Poetry a crear el entorno virtual dentro del proyecto
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# Instalar dependencias directamente en el entorno virtual de Poetry
+RUN poetry install --no-root
 
 # Etapa de producción
 FROM python:3.11-slim as production
 
 WORKDIR /usr/src/app
 
-COPY --from=deps /usr/src/app/requirements.txt .
+# Copiar el entorno virtual de Poetry desde la etapa de dependencias
+COPY --from=deps /usr/src/app/.venv /usr/src/app/.venv
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Asegurarse de que el PATH incluya el binario de Poetry
+ENV PATH="/usr/src/app/.venv/bin:$PATH"
 
 COPY ./app /usr/src/app/app
 

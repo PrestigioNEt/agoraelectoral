@@ -14,11 +14,13 @@ jobs:
     steps:
       - name: 1. Checkout del Repositorio
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Required for Turborepo to detect changes
 
       - name: 2. Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20.19.0'
           cache: 'npm'
 
       - name: 3. Configurar Python
@@ -26,30 +28,26 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 4. Instalar Dependencias del Frontend
-        run: npm ci --workspace=frontend
+      - name: 4. Instalar Dependencias Globales (Poetry)
+        run: pip install poetry
 
-      - name: 5. Instalar Dependencias del Backend
-        run: |
-          pip install poetry
-          poetry install --no-root --directory ./services/auth-service
-          poetry install --no-root --directory ./services/crm-service
-      
-      - name: 6. Linting de Python
-        run: |
-          pip install ruff
-          ruff check .
+      - name: 5. Instalar Dependencias del Monorepo (npm)
+        run: npm install
 
-      - name: 7. Pruebas del Backend
+      - name: 6. Instalar Dependencias de Poetry para todos los servicios
         run: |
-          pip install pytest
-          # Crear archivos de prueba vacíos para que pytest no falle si no hay pruebas
-          touch services/auth-service/test_empty.py
-          touch services/crm-service/test_empty.py
-          pytest services/
+          for dir in services/*; do
+            if [ -f "$dir/pyproject.toml" ]; then
+              echo "Installing poetry dependencies for $dir"
+              poetry install --no-root --directory "$dir"
+            fi
+          done
 
-      - name: 8. Pruebas del Frontend
-        run: npm run test --workspace=frontend -- --run
+      - name: 7. Linting de Código
+        run: npm run lint
+
+      - name: 8. Ejecutar Pruebas
+        run: npm run test
 
       - name: 9. Construir la Aplicación Frontend
         run: npm run build --workspace=frontend
@@ -78,7 +76,7 @@ jobs:
 
   deploy-backend-to-gke:
     needs: build-and-test
-    if: github.ref == '''refs/heads/main''' # Solo desplegar en pushes a main
+    if: github.ref == 'refs/heads/main' # Solo desplegar en pushes a main
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
@@ -97,29 +95,35 @@ jobs:
       - name: 3. Configurar gcloud
         run: gcloud auth configure-docker gcr.io
 
-      - name: 4. Construir y Publicar Imagen de Auth Service
+      - name: 4. Construir y Publicar Imágenes de Servicios Afectados
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/auth-service:latest -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/auth-service:${{ github.sha }} ./services/auth-service
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/auth-service:latest
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/auth-service:${{ github.sha }}
-          
-      - name: 5. Construir y Publicar Imagen de CRM Service
-        run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/crm-service:latest -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/crm-service:${{ github.sha }} ./services/crm-service
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/crm-service:latest
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/crm-service:${{ github.sha }}
+          # Get changed services using Turborepo
+          npx turbo run build --filter="...[HEAD^1]" --dry-run=json | jq -r ".tasks[].package" | while read -r service_name; do
+            if [[ "$service_name" == "frontend" ]]; then
+              continue # Frontend is handled separately
+            fi
+            echo "Building and pushing image for $service_name"
+            docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/$service_name:latest -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/$service_name:${{ github.sha }} ./services/$service_name
+            docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/$service_name:latest
+            docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/$service_name:${{ github.sha }}
+          done
 
-      - name: 6. Obtener Credenciales de GKE
+      - name: 5. Obtener Credenciales de GKE
         uses: 'google-github-actions/get-gke-credentials@v2'
         with:
           cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
           location: ${{ secrets.GKE_ZONE }}
 
-      - name: 7. Desplegar en GKE
+      - name: 6. Desplegar en GKE
         run: |
-          # Actualizar la imagen en los manifiestos de despliegue
-          sed -i "s|gcr.io/YOUR_GCP_PROJECT_ID/auth-service:latest|gcr.io/${{ secrets.GCP_PROJECT_ID }}/auth-service:${{ github.sha }}|g" k8s/auth-deployment.yaml
-          sed -i "s|gcr.io/YOUR_GCP_PROJECT_ID/crm-service:latest|gcr.io/${{ secrets.GCP_PROJECT_ID }}/crm-service:${{ github.sha }}|g" k8s/crm-deployment.yaml
-          
-          # Aplicar los manifiestos
-          kubectl apply -f k8s/
+          # Get changed services using Turborepo
+          npx turbo run deploy --filter="...[HEAD^1]" --dry-run=json | jq -r ".tasks[].package" | while read -r service_name; do
+            if [[ "$service_name" == "frontend" ]]; then
+              continue # Frontend is handled separately
+            fi
+            echo "Deploying $service_name to GKE"
+            # Update the image in the deployment manifest
+            sed -i "s|gcr.io/YOUR_GCP_PROJECT_ID/$service_name:latest|gcr.io/${{ secrets.GCP_PROJECT_ID }}/$service_name:${{ github.sha }}|g" k8s/$service_name-deployment.yaml
+            # Apply the manifest
+            kubectl apply -f k8s/$service_name-deployment.yaml
+          done

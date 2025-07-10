@@ -19,3 +19,11 @@ spec:
         image: gcr.io/YOUR_GCP_PROJECT_ID/auth-service:latest
         ports:
         - containerPort: 8000
+        env:
+        - name: REDIS_HOST
+          value: "redis"
+        - name: SUPABASE_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: auth-service-secrets
+              key: SUPABASE_JWT_SECRET
