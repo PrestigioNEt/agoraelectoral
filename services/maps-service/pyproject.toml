@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "maps-service"
+version = "0.1.0"
+description = "Microservice for map-related functionalities (FastAPI)."
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start = "uvicorn app.main:app --host 0.0.0.0 --port 8000"

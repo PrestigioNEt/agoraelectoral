@@ -530,3 +530,12 @@ gemini
 exit
 gemini
 exit
+cd "$env:LOCALAPPDATA\Docker\wsl"
+code .
+sudo systemctl stop docker
+sudo systemctl start docker
+sudo service docker restart
+exit
+rexit
+exit
+gemini

@@ -1,20 +1,31 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-alpine
+# Etapa de dependencias
+FROM python:3.11-slim as deps
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json and package-lock.json are copied
-COPY package*.json ./
+RUN pip install poetry
 
-RUN npm install
+COPY pyproject.toml poetry.lock* ./
 
-# Copy app source code
-COPY . .
+# Forzar a Poetry a crear el entorno virtual dentro del proyecto
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
-# Expose port
-EXPOSE 3000
+# Instalar dependencias directamente en el entorno virtual de Poetry
+RUN poetry install --no-root
 
-# Run the application
-CMD [ "node", "src/index.js" ]
+# Etapa de producción
+FROM python:3.11-slim as production
+
+WORKDIR /app
+
+# Copiar el entorno virtual de Poetry desde la etapa de dependencias
+COPY --from=deps /app/.venv /app/.venv
+
+# Asegurarse de que el PATH incluya el binario de Poetry
+ENV PATH="/app/.venv/bin:$PATH"
+
+COPY ./app /usr/src/app/app
+
+EXPOSE 8000
+
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

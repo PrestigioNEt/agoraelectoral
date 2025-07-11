@@ -76,7 +76,7 @@ jobs:
 
   deploy-backend-to-gke:
     needs: build-and-test
-    if: github.ref == 'refs/heads/main' # Solo desplegar en pushes a main
+    if: github.ref  'refs/heads/main' # Solo desplegar en pushes a main
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
