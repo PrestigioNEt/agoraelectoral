@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/YOUR_GCP_PROJECT_ID/frontend:latest # REPLACE with your actual image path and consider using a specific tag/SHA
+        image: gcr.io/YOUR_GCP_PROJECT_ID/frontend:__IMAGE_TAG__ # Tag updated by CI/CD
         ports:
         - containerPort: 5173 # Matches EXPOSE in new Dockerfile using 'serve -l 5173'
         env:
@@ -43,3 +43,24 @@ spec:
             secretKeyRef:
               name: frontend-supabase-keys # This secret needs to be created in K8s
               key: VITE_SUPABASE_ANON_KEY
+        resources:
+          requests:
+            memory: "64Mi"  # Frontend serving static files is usually light
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        readinessProbe:
+          tcpSocket:
+            port: 5173
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+        livenessProbe:
+          tcpSocket:
+            port: 5173
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 1
+          failureThreshold: 3

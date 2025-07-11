@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: gcr.io/YOUR_GCP_PROJECT_ID/auth-service:latest
+        image: gcr.io/YOUR_GCP_PROJECT_ID/auth-service:__IMAGE_TAG__ # Tag updated by CI/CD
         ports:
         - containerPort: 8000
         env:
@@ -32,3 +32,26 @@ spec:
             secretKeyRef:
               name: db-credentials # This secret needs to be created in K8s
               key: DATABASE_URL
+        resources:
+          requests:
+            memory: "256Mi" # Auth service might need more due to DB interactions
+            cpu: "150m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /api/v1/health/ # Specific health endpoint for auth-service
+            port: 8000
+          initialDelaySeconds: 20 # Might take longer to connect to DB
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /api/v1/health/
+            port: 8000
+          initialDelaySeconds: 45 # Give more time before first liveness check
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
