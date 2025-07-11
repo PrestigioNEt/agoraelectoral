@@ -1,7 +1,7 @@
 # Etapa de dependencias
 FROM python:3.11-slim as deps
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 RUN pip install poetry
 
@@ -16,13 +16,13 @@ RUN poetry install --no-root
 # Etapa de producción
 FROM python:3.11-slim as production
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copiar el entorno virtual de Poetry desde la etapa de dependencias
-COPY --from=deps /usr/src/app/.venv /usr/src/app/.venv
+COPY --from=deps /app/.venv /app/.venv
 
 # Asegurarse de que el PATH incluya el binario de Poetry
-ENV PATH="/usr/src/app/.venv/bin:$PATH"
+ENV PATH="/app/.venv/bin:$PATH"
 
 COPY ./app /usr/src/app/app
 

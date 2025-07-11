@@ -49,3 +49,9 @@ venv/
 
 # Frontend specific
 .vite/
+
+# Kubernetes config
+.kube/
+
+# Turborepo cache
+.turbo/cache/

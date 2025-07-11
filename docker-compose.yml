@@ -4,7 +4,7 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      - ./services/auth-service/app:/usr/src/app/app
+      - ./services/auth-service/app:/app/app
     env_file:
       - ./services/auth-service/.env
 
@@ -13,7 +13,9 @@ services:
     ports:
       - "8002:8000"
     volumes:
-      - ./services/crm-service/app:/usr/src/app/app
+      - ./services/crm-service/app:/app/app
+    env_file:
+      - ./services/crm-service/.env
 
   analytics-service:
     build: ./services/analytics-service
@@ -21,14 +23,15 @@ services:
       - "8003:8000"
     volumes:
       - ./services/analytics-service/app:/app/app
+    env_file:
+      - ./services/analytics-service/.env
 
   maps-service:
     build: ./services/maps-service
     ports:
       - "8004:3000"
-    volumes:
-      - ./services/maps-service:/usr/src/app
-      - /usr/src/app/node_modules
+    env_file:
+      - ./services/maps-service/.env
 
   notifications-service:
     build: ./services/notifications-service
@@ -36,6 +39,8 @@ services:
       - "8005:8000"
     volumes:
       - ./services/notifications-service/app:/app/app
+    env_file:
+      - ./services/notifications-service/.env
 
   mcp-service:
     build: ./services/mcp-service
@@ -43,14 +48,15 @@ services:
       - "8006:8000"
     volumes:
       - ./services/mcp-service/app:/app/app
+    env_file:
+      - ./services/mcp-service/.env
 
   frontend:
     build: ./frontend
     ports:
       - "5173:5173"
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
+    env_file:
+      - ./frontend/.env
 
   redis:
     image: redis:latest

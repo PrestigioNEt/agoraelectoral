@@ -11,7 +11,7 @@
   "scripts": {
     "start": "docker compose up",
     "dev": "docker compose up",
-    "build": "turbo run build",
+    "build": "docker compose build --no-cache",
     "down": "docker compose down",
     "lint": "turbo run lint",
     "test": "turbo run test"

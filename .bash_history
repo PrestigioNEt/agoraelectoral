@@ -522,3 +522,11 @@ npm run dev
 clear
 gemini
 exit
+code .
+sudo ufw enable
+Run npm install -g @google/gemini-cli to update
+exit
+gemini
+exit
+gemini
+exit
