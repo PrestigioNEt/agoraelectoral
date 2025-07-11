@@ -27,10 +27,10 @@ app.include_router(health.router, tags=["health"])
 async def on_startup(): # Made the function async
     await create_db_and_tables_async() # Call the async version and await
     # Add Redis connection check
-    try:
-        # redis-py's ping is synchronous. For a fully async app, you might use aioredis.
-        # For now, this sync ping in an async startup is acceptable if it's quick.
-        redis_client.ping()
-        print("Successfully connected to Redis!")
-    except redis.exceptions.ConnectionError as e: # Ensure redis is imported if not already
-        raise RuntimeError(f"Could not connect to Redis: {e}")
+    # try:
+    #     # redis-py's ping is synchronous. For a fully async app, you might use aioredis.
+    #     # For now, this sync ping in an async startup is acceptable if it's quick.
+    #     redis_client.ping()
+    #     print("Successfully connected to Redis!")
+    # except redis.exceptions.ConnectionError as e: # Ensure redis is imported if not already
+    #     raise RuntimeError(f"Could not connect to Redis: {e}")

@@ -1,6 +1,7 @@
 services:
   auth-service:
     build: ./services/auth-service
+    image: agoraelectoral/auth-service:latest
     ports:
       - "8001:8000"
     volumes:
@@ -10,6 +11,7 @@ services:
 
   crm-service:
     build: ./services/crm-service
+    image: agoraelectoral/crm-service:latest
     ports:
       - "8002:8000"
     volumes:
@@ -19,6 +21,7 @@ services:
 
   analytics-service:
     build: ./services/analytics-service
+    image: agoraelectoral/analytics-service:latest
     ports:
       - "8003:8000"
     volumes:
@@ -28,6 +31,7 @@ services:
 
   maps-service:
     build: ./services/maps-service
+    image: agoraelectoral/maps-service:latest
     ports:
       - "8004:3000"
     env_file:
@@ -35,6 +39,7 @@ services:
 
   notifications-service:
     build: ./services/notifications-service
+    image: agoraelectoral/notifications-service:latest
     ports:
       - "8005:8000"
     volumes:
@@ -44,13 +49,19 @@ services:
 
   mcp-service:
     build: ./services/mcp-service
+    image: agoraelectoral/mcp-service:latest
     volumes:
       - ./services/mcp-service/app:/app/app
     env_file:
       - ./services/mcp-service/.env
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_CRM_SERVICE_URL: http://localhost:8002
+        VITE_AUTH_SERVICE_URL: http://localhost:8001
+    image: agoraelectoral/frontend:latest
     ports:
       - "5173:5173"
     env_file:

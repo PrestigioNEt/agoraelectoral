@@ -1,5 +1,12 @@
 # Stage 1: Build the React application
 FROM node:20-alpine AS builder
+
+ARG VITE_CRM_SERVICE_URL
+ARG VITE_AUTH_SERVICE_URL
+
+ENV VITE_CRM_SERVICE_URL=$VITE_CRM_SERVICE_URL
+ENV VITE_AUTH_SERVICE_URL=$VITE_AUTH_SERVICE_URL
+
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json (or yarn.lock)

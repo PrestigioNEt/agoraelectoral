@@ -1,4 +1,5 @@
 from fastapi import Depends, HTTPException, status
+from fastapi import Request, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from sqlmodel.ext.asyncio.session import AsyncSession # Changed from sqlmodel import Session
@@ -27,7 +28,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # tokenUrl relative to router prefix
 
-async def get_current_user_id(token: str = Depends(oauth2_scheme)) -> str:
+async def get_current_user_id(request: Request, token: str = Depends(oauth2_scheme)) -> str:
+    if request.method == "OPTIONS":
+        return None
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

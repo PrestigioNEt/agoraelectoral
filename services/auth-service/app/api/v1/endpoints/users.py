@@ -35,6 +35,11 @@ async def read_users_me(
     current_user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_async_session)
 ):
+    if current_user_id is None:
+        # This case is for OPTIONS requests that are allowed to pass through get_current_user_id
+        # without authentication. FastAPI handles the OPTIONS response automatically.
+        return {}
+
     profile = await session.get(Profile, current_user_id)
     if not profile:
         raise HTTPException(status_code=status.HTTP_404, detail="User profile not found")

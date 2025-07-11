@@ -539,3 +539,74 @@ exit
 rexit
 exit
 gemini
+code .
+ssh root@31.97.140.106
+sudo apt update && sudo apt install -y ca-certificates curl gnupg                                                                                         │
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo    16   "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   17   \"$(. /etc/os-release && echo \"$VERSION_CODENAME\")\" stable" |    18   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo docker run hello-world
+docker compose version
+ssh-keygen -t rsa -b 4096 -C "github-actions-deploy" -f ~/.ssh/github_actions_deploy_key
+ssh-copy-id -i ~/.ssh/github_actions_deploy_key.pub root@31.97.140.106
+cat ~/.ssh/github_actions_deploy_key
+cd /ruta/a/tu/repositorio/agoraelectoral
+cd agoraelectoralaico
+mkdir -p .github/workflows
+nano .github/workflows/deploy.yml
+git add .github/workflows/deploy.yml
+git commit -m "feat: Add GitHub Actions workflow for CI/CD deployment to VPS"
+git push origin main # Asegúrate de que 'main' sea la rama correcta
+ssh-keygen -t ed25519 -C "prestigedigitalplus@gmail.com" -f ~/.ssh/github_id_ed25519
+cat ~/.ssh/github_id_ed25519 Your public key has been saved in /home/agoraelectoral/.ssh/github_id_ed25519.pub The key fingerprint is:SHA256:jQ2NIxEec2a7WyXT1qpzi8XgM13YQ6aHJGd9YYJHXDk prestigedigitalplus@gmail.com
+git remote -v
+git remote set-url origin git@github.com:PrestigioNEt/agoraelectoral.git
+git remote -v
+git push origin main
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIjG3WTX6Mxf5HtMBybeeYkcOCe/2bCrYmLKNJvpXe0k prestigedigitalplus@gmail.com
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github_id_ed25519
+ssh -T git@github.com
+git push origin main
+git pull origin main
+clear
+git pull origin main --rebase
+git stash save
+git pull origin main --rebase
+git status
+git add .gitignore
+git commit -m "feat: Add common ignore patterns to .gitignore"
+git status
+git add GEMINI.md package.json
+git commit -m "feat: Track existing GEMINI.md and package.json files"
+git pull origin main --rebase
+ssh root@31.97.140.106
+git rebase --continue
+git status
+git checkout --theirs .github/workflows/ci.yml
+git checkout --theirs README.md
+git add .github/workflows/ci.yml
+git add README.md
+git rebase --continue
+git rebase --abort
+git status
+nano .github/workflows/deploy.yml
+git add .github/workflows/deploy.yml
+git commit -m "feat: Add GitHub Actions workflow for CI/CD deployment to VPS"
+git status
+git add apk/maps-service/package-lock.json apk/maps-service/src/utils/redis.js install-mcp.sh src/ start-server.sh test-server.sh tsconfig.json
+git commit -m "feat: Add new project files and configurations"
+git pull origin main
+git add apk/maps-service/package-lock.json apk/maps-service/src/utils/redis.js install-mcp.sh src/ start-server.sh test-server.sh tsconfig.json
+git commit -m "feat: Add remaining new project files"
+git pull origin main --rebase
+git rebase --abort
+git status
+clear
