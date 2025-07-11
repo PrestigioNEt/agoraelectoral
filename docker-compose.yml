@@ -39,8 +39,6 @@ services:
 
   mcp-service:
     build: ./services/mcp-service
-    ports:
-      - "8006:8000"
     volumes:
       - ./services/mcp-service/app:/app/app
 

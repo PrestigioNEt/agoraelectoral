@@ -25,5 +25,10 @@ spec:
         - name: SUPABASE_JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: auth-service-secrets
+              name: auth-service-secrets # This secret needs to be created in K8s
               key: SUPABASE_JWT_SECRET
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials # This secret needs to be created in K8s
+              key: DATABASE_URL

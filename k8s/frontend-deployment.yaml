@@ -16,12 +16,30 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/YOUR_GCP_PROJECT_ID/frontend:latest # REPLACE with your actual image path
+        image: gcr.io/YOUR_GCP_PROJECT_ID/frontend:latest # REPLACE with your actual image path and consider using a specific tag/SHA
         ports:
-        - containerPort: 5173
+        - containerPort: 5173 # Matches EXPOSE in new Dockerfile using 'serve -l 5173'
         env:
-        - name: VITE_CRM_SERVICE_URL
-          value: "http://crm-service"
         - name: VITE_AUTH_SERVICE_URL
-          value: "http://auth-service"
-        # Add other service URLs as needed
+          value: "http://auth-service" # K8s service name for auth-service
+        - name: VITE_CRM_SERVICE_URL
+          value: "http://crm-service"   # K8s service name for crm-service
+        - name: VITE_ANALYTICS_SERVICE_URL
+          value: "http://analytics-service" # Example, add if used
+        - name: VITE_MAPS_SERVICE_URL
+          value: "http://maps-service"       # Example, add if used
+        - name: VITE_NOTIFICATIONS_SERVICE_URL
+          value: "http://notifications-service" # Example, add if used
+        # Add other backend service URLs as needed, pointing to their K8s service names
+
+        # Supabase configuration from secrets
+        - name: VITE_SUPABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: frontend-supabase-keys # This secret needs to be created in K8s
+              key: VITE_SUPABASE_URL
+        - name: VITE_SUPABASE_ANON_KEY
+          valueFrom:
+            secretKeyRef:
+              name: frontend-supabase-keys # This secret needs to be created in K8s
+              key: VITE_SUPABASE_ANON_KEY

@@ -17,8 +17,6 @@ spec:
       containers:
       - name: mcp-service
         image: gcr.io/YOUR_GCP_PROJECT_ID/mcp-service:latest # REPLACE with your actual image path
-        ports:
-        - containerPort: 8000
         env:
         - name: REDIS_HOST
           value: "redis"
