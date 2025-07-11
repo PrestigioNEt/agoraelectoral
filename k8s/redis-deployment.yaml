@@ -16,12 +16,35 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:latest
+        image: redis:__IMAGE_TAG__ # Or pin to a specific version like redis:7.2-alpine
         ports:
         - containerPort: 6379
         volumeMounts:
         - name: redis-data
           mountPath: /data
+        resources:
+          requests:
+            memory: "100Mi" # Redis can be memory intensive depending on data
+            cpu: "100m"
+          limits:
+            memory: "512Mi" # Adjust based on expected data size
+            cpu: "500m"
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 5 # redis-cli ping should be fast
+          failureThreshold: 3
       volumes:
       - name: redis-data
         persistentVolumeClaim:

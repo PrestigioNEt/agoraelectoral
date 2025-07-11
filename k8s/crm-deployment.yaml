@@ -16,9 +16,32 @@ spec:
     spec:
       containers:
       - name: crm-service
-        image: gcr.io/YOUR_GCP_PROJECT_ID/crm-service:latest
+        image: gcr.io/YOUR_GCP_PROJECT_ID/crm-service:__IMAGE_TAG__ # Tag updated by CI/CD
         ports:
         - containerPort: 8000
         env:
         - name: REDIS_HOST
           value: "redis"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        readinessProbe:
+          httpGet:
+            path: / # Assuming root path returns 200 OK
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3

@@ -10,7 +10,7 @@ fastapi = "^0.111.0"
 uvicorn = {extras = ["standard"], version = "^0.29.0"}
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 sqlmodel = "^0.0.20"
-psycopg2-binary = "^2.9.9" # O asyncpg para uso asíncrono puro
+asyncpg = "^0.29.0" # Replaced psycopg2-binary for async operations
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.0.0"

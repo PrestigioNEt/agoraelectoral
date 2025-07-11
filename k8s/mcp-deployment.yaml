@@ -16,9 +16,25 @@ spec:
     spec:
       containers:
       - name: mcp-service
-        image: gcr.io/YOUR_GCP_PROJECT_ID/mcp-service:latest # REPLACE with your actual image path
-        ports:
-        - containerPort: 8000
+        image: gcr.io/YOUR_GCP_PROJECT_ID/mcp-service:__IMAGE_TAG__ # Tag updated by CI/CD
         env:
         - name: REDIS_HOST
           value: "redis"
+        resources:
+          requests:
+            memory: "128Mi"  # Python script, depends on its processing
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "ps aux | grep '[p]oetry run python app/main.py'"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        # Readiness probe might not be applicable for a stdio script without a specific ready state.

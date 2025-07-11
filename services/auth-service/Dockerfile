@@ -18,7 +18,10 @@ RUN ls -la /app/.venv/bin
 # Etapa de producción
 FROM python:3.11-slim as production
 
-WORKDIR /app
+# Crear un usuario y grupo no root
+RUN groupadd -r appgroup && useradd -r -g appgroup -d /usr/src/app -s /sbin/nologin appuser
+
+WORKDIR /usr/src/app
 
 # Copiar el entorno virtual de Poetry desde la etapa de dependencias
 COPY --from=deps /app/.venv /app/.venv
@@ -27,6 +30,12 @@ COPY --from=deps /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 
 COPY ./app /usr/src/app/app
+
+# Cambiar la propiedad de los archivos de la aplicación al usuario no root
+RUN chown -R appuser:appgroup /usr/src/app
+
+# Cambiar al usuario no root
+USER appuser
 
 EXPOSE 8000
 

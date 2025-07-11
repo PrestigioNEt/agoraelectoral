@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "echo \"No tests for maps-service yet\" && exit 0",
-    "lint": "echo \"No linting for maps-service yet\" && exit 0"
+    "lint": "eslint . --ext .js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
   "dependencies": {
     "redis": "^4.6.10",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
   }
 }

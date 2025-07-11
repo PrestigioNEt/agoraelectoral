@@ -10,3 +10,7 @@ class UserProfile(BaseModel):
     full_name: Optional[str] = None
     avatar_url: Optional[str] = None
     role: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
