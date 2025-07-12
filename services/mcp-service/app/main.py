@@ -42,15 +42,21 @@ async def handle_list_resources() -> list[types.Resource]:
 async def handle_read_resource(uri: str) -> str:
     """Lee un recurso específico"""
     if uri == "notas://todas":
-        # Intentar obtener de Redis primero
-        all_notes_json = redis_client.get("all_notes")
-        if all_notes_json:
-            return all_notes_json.decode('utf-8')
-        else:
-            # Si no está en Redis, usar el almacenamiento en memoria y cachear
-            notes_json = json.dumps(notas, indent=2)
-            redis_client.set("all_notes", notes_json)
-            return notes_json
+        try:
+            # Intentar obtener de Redis primero
+            all_notes_json = redis_client.get("all_notes")
+            if all_notes_json:
+                return all_notes_json.decode('utf-8')
+            else:
+                # Si no está en Redis, usar el almacenamiento en memoria y cachear
+                notes_json = json.dumps(notas, indent=2)
+                redis_client.set("all_notes", notes_json)
+                return notes_json
+        except redis.exceptions.RedisError as e:
+            # Log the error or handle it as per MCP error reporting guidelines
+            print(f"Error de Redis al leer 'notas://todas': {e}", file=sys.stderr)
+            # Fallback to in-memory data if Redis fails
+            return json.dumps(notas, indent=2)
     else:
         raise ValueError(f"Recurso no encontrado: {uri}")
 
@@ -130,8 +136,13 @@ async def handle_call_tool(
             "contenido": arguments["contenido"]
         }
         notas[nota_id] = nota # Almacenar en memoria
-        redis_client.set(f"nota:{nota_id}", json.dumps(nota)) # Almacenar en Redis
-        redis_client.delete("all_notes") # Invalidar caché de todas las notas
+        try:
+            redis_client.set(f"nota:{nota_id}", json.dumps(nota)) # Almacenar en Redis
+            redis_client.delete("all_notes") # Invalidar caché de todas las notas
+        except redis.exceptions.RedisError as e:
+            print(f"Error de Redis al agregar nota o invalidar caché: {e}", file=sys.stderr)
+            # La nota se agrega a la memoria, pero Redis podría estar inconsistente.
+            # Se podría considerar una lógica de reintento o una advertencia más fuerte.
         return [
             types.TextContent(
                 type="text",
@@ -141,17 +152,22 @@ async def handle_call_tool(
     
     elif name == "obtener_nota":
         nota_id = arguments["id"]
-        # Intentar obtener de Redis primero
-        nota_json = redis_client.get(f"nota:{nota_id}")
-        if nota_json:
-            nota = json.loads(nota_json.decode('utf-8'))
-            return [
-                types.TextContent(
-                    type="text",
-                    text=f"Título: {nota['titulo']}\nContenido: {nota['contenido']}"
-                )
-            ]
-        elif nota_id in notas:
+        try:
+            # Intentar obtener de Redis primero
+            nota_json = redis_client.get(f"nota:{nota_id}")
+            if nota_json:
+                nota = json.loads(nota_json.decode('utf-8'))
+                return [
+                    types.TextContent(
+                        type="text",
+                        text=f"Título: {nota['titulo']}\nContenido: {nota['contenido']}"
+                    )
+                ]
+        except redis.exceptions.RedisError as e:
+            print(f"Error de Redis al obtener nota ID {nota_id}: {e}", file=sys.stderr)
+            # Fallback a la memoria si Redis falla
+
+        if nota_id in notas: # Fallback o si no estaba en Redis
             nota = notas[nota_id]
             return [
                 types.TextContent(

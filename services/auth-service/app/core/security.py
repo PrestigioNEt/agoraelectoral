@@ -21,7 +21,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
         expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     # Ensure 'sub' is a string, as it's often expected by JWT consumers
     to_encode.update({"exp": expire, "sub": str(data.get("sub"))})
-    encoded_jwt = jwt.encode(to_encode, SUPABASE_JWT_SECRET, algorithm=SUPABASE_ALGORITHM) # SUPABASE_JWT_SECRET is already bytes
+    encoded_jwt = jwt.encode(to_encode, SUPABASE_JWT_SECRET.encode('utf-8'), algorithm=SUPABASE_ALGORITHM)
     return encoded_jwt
 # END Placeholder JWT creation
 

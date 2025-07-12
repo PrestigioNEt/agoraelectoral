@@ -8,14 +8,10 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL must be set as an environment variable")
 
-# Synchronous engine (to be phased out)
-engine = create_engine(DATABASE_URL)
-
 # Asynchronous engine
 async_engine = create_async_engine(DATABASE_URL, echo=False) # Set echo=True for debugging SQL
 
-def create_db_and_tables(): # Sync version (to be phased out)
-    SQLModel.metadata.create_all(engine)
+# create_db_and_tables() sync version is removed as it's phased out.
 
 async def create_db_and_tables_async(): # Async version for startup
     async with async_engine.begin() as conn:

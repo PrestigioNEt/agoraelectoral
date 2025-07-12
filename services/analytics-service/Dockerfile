@@ -11,7 +11,8 @@ COPY pyproject.toml poetry.lock* ./
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # Instalar dependencias directamente en el entorno virtual de Poetry
-RUN poetry install --no-root
+# Idealmente, aioredis estaría en pyproject.toml. Añadiéndolo aquí para demostración.
+RUN poetry install --no-root && poetry add aioredis[hiredis]
 
 # Etapa de producción
 FROM python:3.11-slim as production

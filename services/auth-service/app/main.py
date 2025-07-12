@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
-app.include_router(health.router, tags=["health"])
+app.include_router(health.router, prefix="/api/v1/health", tags=["health"]) # Added prefix
 
 @app.on_event("startup")
 async def on_startup(): # Made the function async

@@ -27,14 +27,15 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "250m"
+        # Readiness probe might not be applicable for a stdio script without a specific ready state,
+        # or would need a custom solution (e.g., script creates a file when ready).
         livenessProbe:
           exec:
             command:
             - /bin/sh
             - -c
-            - "ps aux | grep '[p]oetry run python app/main.py'"
+            - "ps aux | grep '[p]oetry run python app/main.py' | grep -v grep"
           initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 5
           failureThreshold: 3
-        # Readiness probe might not be applicable for a stdio script without a specific ready state.
